@@ -18,7 +18,7 @@ tasks:
         - 2022.04
         - 2022.06
         - 2022.07
-        - master
+        - blead
     code: |
       my @state;
       for config()<list><> -> $v {
