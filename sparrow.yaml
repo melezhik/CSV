@@ -14,6 +14,7 @@ tasks:
       for config()<tasks><multi-versions><state><list><> -> $i {
         $table.add-row: [ $i<version>, $i<status>,  $i<time> ];
       }
+      say $table;
     depends:
       -
         name: multi-versions
