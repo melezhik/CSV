@@ -5,7 +5,8 @@ tasks:
     language: Raku
     code: |
       for config()<tasks><multi-versions><state><list><> -> $i {
-        say "[{$i<version>}] - {$i<status>} | {$i<time>}";
+        say "[{$i<version>}] - {$i<status>} |";
+        say $i<time>;
       }
     depends:
       -
@@ -18,7 +19,6 @@ tasks:
         - 2022.04
         - 2022.06
         - 2022.07
-        - blead
     code: |
       my @state;
       for config()<list><> -> $v {
