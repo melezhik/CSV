@@ -9,7 +9,9 @@ tasks:
         title => "Rakudo Versions",
         field-names => ["Version", "Status", "Time"],
         sort-by => 'Version',
-        align => %('Version' => 'l');
+        align => %('Version' => 'l'),
+        max-table-width => 100,
+        min-table-width => 100;
         
       for config()<tasks><multi-versions><state><list><> -> $i {
         $table.add-row: [ $i<version>, $i<status>,  $i<time> ];
