@@ -4,9 +4,15 @@ tasks:
     default: true
     language: Raku
     code: |
+      use Pretty::Table;
+      my $table = Pretty::Table.new:
+        title => "Rakudo Versions",
+        field-names => ["Version", "Status", "Time"],
+        sort-by => 'Version',
+        align => %('Version' => 'l');
+        
       for config()<tasks><multi-versions><state><list><> -> $i {
-        say "[{$i<version>}] - {$i<status>} |";
-        say $i<time>;
+        $table.add-row: [ $i<version>}, $i<status>,  $i<time> ];
       }
     depends:
       -
@@ -51,7 +57,7 @@ tasks:
           rakubrew download moar-$version
           rakubrew switch moar-$version
           cd source/
-          zef install --/test File::Temp Test::META
+          zef install --/test File::Temp Test::META Pretty::Table
           zef install --/test --deps-only .
           /usr/bin/time -o "${cache_root_dir}/${version}_time" \
           zef test . && touch "${cache_root_dir}/${version}_ok"
